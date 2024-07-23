@@ -16,7 +16,7 @@ const LoginSignup = () => {
     const login = async () => {
         console.log("Login function executed", formData)
         let responseData
-        await fetch('http://localhost:4000/login', {
+        await fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
             method:"POST",
             headers:{
                 Accept:"application/json",
@@ -37,7 +37,7 @@ const LoginSignup = () => {
     const signUp = async () => {
         console.log("Sign Up function executed", formData)
         let responseData
-        await fetch('http://localhost:4000/signup', {
+        await fetch(`${import.meta.env.VITE_BACKEND_URL}/signup`, {
             method:"POST",
             headers:{
                 Accept:"application/json",

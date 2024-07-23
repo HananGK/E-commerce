@@ -19,12 +19,12 @@ const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState(getDefaultCart())
 
     useEffect(()=>{
-        fetch('http://localhost:4000/allproducts')
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/allproducts`)
         .then((res)=>res.json())
         .then((data)=>setAll_Product(data))
 
         if(localStorage.getItem("auth-token")){
-            fetch("http://localhost:4000/getcart", {
+            fetch(`${import.meta.env.VITE_BACKEND_URL}/getcart`, {
                 method:"POST",
                 headers:{
                     Accept:"application/form-data",
@@ -40,7 +40,7 @@ const ShopContextProvider = (props) => {
     const addToCart = (ItemId) => {
         setCartItems((prev) => ({...prev, [ItemId]: prev[ItemId] + 1}))
         if(localStorage.getItem("auth-token")){
-            fetch('http://localhost:4000/addtocart', {
+            fetch(`${import.meta.env.VITE_BACKEND_URL}/addtocart`, {
                 method:"POST",
                 headers:{
                     Accept: "application/form-data",
@@ -57,7 +57,7 @@ const ShopContextProvider = (props) => {
     const removeFromCart = (ItemId) => {
         setCartItems((prev) => ({...prev, [ItemId]: prev[ItemId] - 1}))
         if(localStorage.getItem("auth-token")){
-            fetch('http://localhost:4000/removefromcart', {
+            fetch(`${import.meta.env.VITE_BACKEND_URL}/removefromcart`, {
                 method:"POST",
                 headers:{
                     Accept: "application/form-data",
